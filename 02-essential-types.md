@@ -119,9 +119,3 @@ const getUser = async (id: string): Promise<User> => {
 	return user;
 };
 ```
-
-## Types or Interfaces
-
-You should use types by default until you need a specific feature of interfaces,
-like 'extends'. Read more
-[here](https://www.totaltypescript.com/type-vs-interface-which-should-you-use)
