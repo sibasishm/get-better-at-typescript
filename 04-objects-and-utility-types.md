@@ -61,6 +61,44 @@ includes arrays, functions, and objects. object type is rarely useful as the
 error messages are not very helpful, prefer using Record<string, unknown>
 instead.
 
+`{}` will accept any value except `null` and `undefined`.
+
+```ts
+interface User {
+	id: number;
+	name: string;
+}
+
+function printUser(user: User) {
+	Object.keys(user).forEach(key => {
+		// Object.keys returns type string[] and not [keyof User]
+		console.log(user[key]);
+	});
+}
+```
+
+When it comes to iterating over object keys, there are two main choices for
+handling this issue: you can either make the key access slightly unsafe via as
+keyof typeof, or you can make the type that's being indexed into looser.
+
+```ts
+function printUser(user: User) {
+	for (const key in user) {
+		console.log(user[key as keyof typeof user]);
+	}
+}
+
+function printUser(obj: Record<string, unknown>) {
+	Object.keys(obj).forEach(key => {
+		console.log(obj[key]);
+	});
+}
+
+function printUser(user: User) {
+	Object.values(user).forEach(console.log);
+}
+```
+
 ## Utility Types
 
 A collection of essential types that TypeScript doesn't provide by default.
