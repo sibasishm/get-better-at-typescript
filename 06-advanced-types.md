@@ -2,6 +2,9 @@ Let's look at some techniques of deriving types from other types. This lets us
 reduce repetition in our code, and create a single source of truth for our
 types.
 
+Based on different types, sharing a common concern either derive them or create
+new types and decouple them.
+
 ## keyof and typeof
 
 The keyof operator allows you to extract the keys from an object type into a
